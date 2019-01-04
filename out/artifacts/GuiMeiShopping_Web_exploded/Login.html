@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>贵美登录</title>
+    <style>
+        body{
+            margin: 0px;
+            background-color: #C0C1BF;
+        }
+        .login{
+            width: 510px;
+            height: 330px;
+            background-image: url("image/login2.PNG");
+            /*设置绝对路径控制div的位置*/
+            position: absolute;
+            left: 500px;
+            top: 210px;
+        }
+        input[name="userName"],input[name="userPassword"]{
+            width: 213px;
+            height: 30px;
+            background-color: rgba(154, 154, 147, 0);
+            border: 1px solid rgba(154, 154, 147, 0);
+            color: #ffffff;
+        }
+        input[name="userName"]{
+             position: relative;
+             top: 136px;
+             left: 157px;
+         }
+        input[name="userPassword"]{
+            position: relative;
+            top: 156px;
+            left: 157px;
+        }
+        .post{
+            position: relative;
+            top: 166px;
+            left: 182px;
+            color: #f8ffff;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        input[type="image"]{
+            position: relative;
+            top: 186px;
+            left: 130px;
+        }
+        #loginCus{
+            width: 230px;
+            height: 330px;
+            position: relative;
+            left: 67%;
+            padding-top: 14%;
+        }
+    </style>
+    <script src="static/js/jquery-1.8.2.min.js"></script>
+
+    <script>
+        $(function () {
+            $("form").submit(function () {
+                var name=$("#name").val();
+                if(name==""){
+                    alert("账号不能为空");
+                    return false;
+                }
+                var  pwd=$("#pwd").val();
+                if (pwd==""){
+                    alert("密码不能为空");
+                    return false;
+                }
+                return true;
+            })
+        })
+        function login() {
+            //1.创建Ajax的核心对象
+            var xhr = new XMLHttpRequest();
+            //2.打开要访问的资源
+            var userName= document.getElementById("userName").value;
+            var userPassword = document.getElementById("userPassword").value;
+            var url = "doSup";
+            xhr.open("post",url);
+            //3.发送请求数据(不可以不发送)
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.send("action=beforeLogin&userName="+userName+"&userPassword="+userPassword);
+            //4.根据状态码的变化进行相应的操作
+            xhr.onreadystatechange = function () {
+                //readyState==4 服务器已经将消息响应到客户端
+                if(xhr.readyState==4){
+                    //表示客户端已经成功的将服务器消息接收完毕
+                    if(xhr.status==200 || xhr.status==304){
+                        //获取服务器中响应出来的文本内容
+                        var loginStatus = xhr.responseText;
+                        if(loginStatus=="1"){
+                            location = "page/index.jsp";
+                        }else{
+                            alert("您输入的账号或密码错误");
+                        }
+                    }
+                }
+            }
+        }
+
+        function  ll() {
+            open("BeforePage/GUIMEI/login.html");
+        }
+
+    </script>
+</head>
+<body>
+    <div class="login">
+        <!--<form action="doSup?action=supLogin" method="post">-->
+            <input type="text" name="userName"   id="userName"  placeholder="请输入昵称"/><br>
+            <input type="password" name="userPassword"  id="userPassword"   placeholder="请输入密码"/><br>
+            <div class="post">
+                <input type="radio" name="userPost" value="管理员" checked/>管理员&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="userPost" value="商家"/>商家
+            </div>
+            <input type="image" src="image/login-botton.PNG" onclick="login()"/>
+        <!--</form>-->
+    </div>
+<img src="static/images/loginCustomer.jpg" onclick="ll()" id="loginCus">
+</body>
+</html>
