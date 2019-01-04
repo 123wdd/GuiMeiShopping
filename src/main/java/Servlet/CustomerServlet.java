@@ -115,5 +115,38 @@ public class CustomerServlet extends HttpServlet {
             }
         }
 
+        /**
+         * 添加商品到购物车
+         */
+        if (action!=null && action.equals("addGoodsToShopCar")){
+
+        }
+        /**
+         * 修改商品到购物车
+         */
+        if (action!=null && action.equals("updateGoodsToShopCar")){
+
+        }
+        /**
+         * 删除商品到购物车
+         */
+        if (action!=null && action.equals("delGoodsToShopCar")){
+
+        }
+        /**
+         * 查询订单状态
+         */
+        if (action!=null && action.equals("queryGoodsStatusToShopCar")){
+
+        }
+
+        /**
+         * 模糊查询商品信息
+         */
+        if (action!=null && action.equals("queryGoodsOnLike")){
+
+        }
+
+
     }
 }

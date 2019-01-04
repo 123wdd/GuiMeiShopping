@@ -1,8 +1,7 @@
 package service.impl;
 
 import Dao.impl.CustomerDaoImpl;
-import pojo.Customer;
-import pojo.page;
+import pojo.*;
 import service.CustomerServiceDao;
 
 import java.util.List;
@@ -34,4 +33,26 @@ public class CustomerServiceDaoImpl implements CustomerServiceDao{
     public int updateById(Customer cus) {
         return customerDao.updateById(cus);
     }
+
+    public int addShop(Shoppingcar shop) {
+        return customerDao.addShop(shop);
+    }
+
+    public int updateShop(Shoppingcar shop) {
+        return 0;
+    }
+
+    public int delShop(String id) {
+        return 0;
+    }
+
+    public Orderse queryOrder(String id) {
+        return null;
+    }
+
+    public List<Goods> queryLikeGoods(String id, String name) {
+        return null;
+    }
+
+
 }

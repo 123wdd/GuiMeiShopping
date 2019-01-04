@@ -6,9 +6,7 @@ import java.util.List;
 
 public interface CustomerDao {
     page<Customer> pageQuery(int pageSize, int pageNumber);
-
     int delCus(String id);
-
     Customer queryById(String id);
     int updateById(Customer cus);
 
