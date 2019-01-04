@@ -200,7 +200,6 @@ public class SellerDaoImpl extends BaseDao implements SellerDao{
                 if (stuList != null && stuList.size() > 0) {
                     Goods gs= (Goods) stuList;
                     return gs;
-
                 }
             }
 
