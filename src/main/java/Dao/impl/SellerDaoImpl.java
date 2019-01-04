@@ -154,6 +154,27 @@ public class SellerDaoImpl extends BaseDao implements SellerDao{
         String sql="select * from seller where sellerUser=? and sellerPassword=?";
         Object []parameter={sellerUser,sellerPassword};
         ResultSet rs=getQuery(sql,parameter);
+        try {
+            while (rs.next()){
+                Seller ss=new Seller();
+                ss.setId(rs.getLong("id"));
+                ss.setSellerName(rs.getString("sellerName"));
+                ss.setSellerAddress(rs.getString("sellerAddress"));
+                ss.setSellerBirthday(rs.getDate("sellerBirthday"));
+                ss.setSellerEmail(rs.getString("sellerEmail"));
+                ss.setSellerIdCard(rs.getString("sellerIdCard"));
+                ss.setSellerPassword(rs.getString("sellerPassword"));
+                ss.setSellerSex(rs.getString("sellerSex"));
+                ss.setSellerTel(rs.getString("sellerTel"));
+                ss.setSellerUser(rs.getString("sellerUser"));
+                return ss;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            dbClose();
+        }
         return null;
     }
 }

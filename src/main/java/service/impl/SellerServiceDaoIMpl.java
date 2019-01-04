@@ -41,4 +41,8 @@ public class SellerServiceDaoIMpl implements SellerServiceDao{
     public List<Seller> queryById() {
         return sellerDao.queryById();
     }
+
+    public Seller seLogin(String sellerUser, String sellerPassword) {
+        return sellerDao.seLogin(sellerUser,sellerPassword);
+    }
 }

@@ -12,5 +12,6 @@ public interface SellerServiceDao {
     int uppdateSell(Seller se);
     Seller queryById(String id);
     List<Seller> queryById();
+    Seller seLogin(String sellerUser,String sellerPassword);
 
 }
