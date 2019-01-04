@@ -6,5 +6,5 @@
     //销毁session对象
 	session.invalidate();
 	//重定向到登录页面
-	response.sendRedirect("head.html");
+	response.sendRedirect("head.jsp");
 %>

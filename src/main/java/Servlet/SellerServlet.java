@@ -180,5 +180,17 @@ public class SellerServlet extends HttpServlet {
             }
 
         }
+        if (action!=null&&action.equals("seLogin")){
+            String sellerUser=request.getParameter("sellerUser");
+            String sellerPassword=request.getParameter("sellerPassword");
+            Seller se=seldao.seLogin(sellerUser,sellerPassword);
+            if (se!=null){
+                session.setAttribute("Seller",se);
+                response.sendRedirect(path+"BeforePage/GUIMEI/banner.jsp");
+            }else {
+                request.setAttribute("error","你输入的账号或密码有误");
+                request.getRequestDispatcher(path+"/Login.html").forward(request,response);
+            }
+        }
     }
 }

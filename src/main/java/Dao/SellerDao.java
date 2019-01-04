@@ -31,6 +31,8 @@ public interface SellerDao  {
     List<Orderse> queryOrder(String id);
     //修改订单
     int updateAnnById(String id);
+    //登入
+    Seller seLogin(String sellerUser,String sellerPassword);
 
 
 
