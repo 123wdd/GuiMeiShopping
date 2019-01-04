@@ -47,5 +47,9 @@ public class SellerServiceDaoIMpl implements SellerServiceDao{
         return sellerDao.queryGoods(id);
     }
 
+    public Goods ggQueryLike(String goodsid, String sellerid, String name) {
+        return sellerDao.ggQueryLike(goodsid,sellerid,name);
+    }
+
 
 }

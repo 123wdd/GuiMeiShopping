@@ -14,4 +14,6 @@ public interface SellerServiceDao {
     Seller queryById(String id);
     List<Seller> queryById();
     List<Goods> queryGoods(String id);
+    //级联查询
+    Goods ggQueryLike(String goodsid,String sellerid,String name);
 }

@@ -178,19 +178,19 @@ public class SellerServlet extends HttpServlet {
                     response.sendRedirect("/page/ShowUpdateGoodsClass.jsp");
                 }
             }
-
-        }
-        if (action!=null&&action.equals("seLogin")){
-            String sellerUser=request.getParameter("sellerUser");
-            String sellerPassword=request.getParameter("sellerPassword");
-            Seller se=seldao.seLogin(sellerUser,sellerPassword);
-            if (se!=null){
-                session.setAttribute("Seller",se);
-                response.sendRedirect(path+"BeforePage/GUIMEI/banner.jsp");
-            }else {
-                request.setAttribute("error","你输入的账号或密码有误");
-                request.getRequestDispatcher(path+"/Login.html").forward(request,response);
+            //级联查询
+            if (action!=null && action.equals("")){
+                String goodsId = request.getParameter("id");
+                String goodName = request.getParameter("name");
+                String goodSellerId = request.getParameter("sellerId");
+                Goods good=seldao.ggQueryLike(goodsId,goodName,goodSellerId);
+                session.setAttribute("page", good);
+                request.setAttribute("userid", goodsId);
+                request.setAttribute("userName", goodName);
+                request.setAttribute("usersex", goodSellerId);
+                request.getRequestDispatcher("/page/showGoods.jsp").forward(request, response);
             }
+
         }
     }
 }
