@@ -15,7 +15,7 @@ public class GoodsServiceDaoImpl implements GoodsServiceDao {
         return ourInstance;
     }
 
-    private GoodsServiceDaoImpl() {
+    public GoodsServiceDaoImpl() {
     }
 
     private GoodsDaoImpl goodsDao=new GoodsDaoImpl();

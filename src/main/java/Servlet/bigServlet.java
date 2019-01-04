@@ -15,10 +15,11 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "bigServlet",urlPatterns = "/doBig")
 public class bigServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             doGet(request, response);
     }
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             //统一字符集
         request.setCharacterEncoding("utf-8");

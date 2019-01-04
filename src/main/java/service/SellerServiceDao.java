@@ -1,5 +1,6 @@
 package service;
 
+import pojo.Goods;
 import pojo.Seller;
 import pojo.page;
 
@@ -12,5 +13,5 @@ public interface SellerServiceDao {
     int uppdateSell(Seller se);
     Seller queryById(String id);
     List<Seller> queryById();
-
+    List<Goods> queryGoods(String id);
 }

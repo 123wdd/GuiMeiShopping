@@ -8,7 +8,7 @@ public interface CustomerDao {
     page<Customer> pageQuery(int pageSize, int pageNumber);
 
     int delCus(String id);
-
+    //根据ID查询个人信息
     Customer queryById(String id);
     int updateById(Customer cus);
 

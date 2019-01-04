@@ -15,10 +15,11 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "OrderseServlet",urlPatterns = "/doOrder")
 public class OrderseServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 doGet(request,response);
     }
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //设置字符集编码格式
         request.setCharacterEncoding("utf-8");

@@ -1,6 +1,7 @@
 package service.impl;
 
 import Dao.impl.SellerDaoImpl;
+import pojo.Goods;
 import pojo.Seller;
 import pojo.page;
 import service.SellerServiceDao;
@@ -41,4 +42,10 @@ public class SellerServiceDaoIMpl implements SellerServiceDao{
     public List<Seller> queryById() {
         return sellerDao.queryById();
     }
+
+    public List<Goods> queryGoods(String id) {
+        return sellerDao.queryGoods(id);
+    }
+
+
 }

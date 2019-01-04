@@ -16,10 +16,11 @@ import java.sql.Date;
 
 @WebServlet(name = "AnnouncementServlet",urlPatterns = "/doAnn")
 public class AnnouncementServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             doGet(request,response);
     }
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //统一字符集
         request.setCharacterEncoding("utf-8");

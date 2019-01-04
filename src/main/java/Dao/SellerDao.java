@@ -26,7 +26,7 @@ public interface SellerDao  {
     //查询商品
     List<Goods> queryGoods(String id);
     //级联查询
-    Goods ggQueryLike(String id,String name);
+    Goods ggQueryLike(String goodsid,String sellerid,String name);
     //查询订单
     List<Orderse> queryOrder(String id);
     //修改订单

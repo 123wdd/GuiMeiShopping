@@ -45,7 +45,8 @@ public class SellerDaoImpl extends BaseDao implements SellerDao{
         Bpage.setPageData(list);
         return Bpage;
     }
-
+    private GoodsDaoImpl supDao = new GoodsDaoImpl();
+    private SellerDaoImpl seldao=new SellerDaoImpl();
     public int delSell(String id) {
         String sql="delete from seller WHERE id NOT IN (SELECT goodsSellId from goods) and id=?";
         Object[]par={id};
@@ -122,11 +123,37 @@ public class SellerDaoImpl extends BaseDao implements SellerDao{
     }
 
     public Seller queryByid(String id) {
-        return null;
+        String sql="select * from seller where id=?";
+        Object[]par={id};
+        ResultSet rs=getQuery(sql,par);
+        Seller ss=new Seller();
+        try{
+            while(rs.next()){
+                ss.setId(rs.getLong("id"));
+                ss.setSellerName(rs.getString("sellerName"));
+                ss.setSellerAddress(rs.getString("sellerAddress"));
+                ss.setSellerBirthday(rs.getDate("sellerBirthday"));
+                ss.setSellerEmail(rs.getString("sellerEmail"));
+                ss.setSellerIdCard(rs.getString("sellerIdCard"));
+                ss.setSellerPassword(rs.getString("sellerPassword"));
+                ss.setSellerSex(rs.getString("sellerSex"));
+                ss.setSellerTel(rs.getString("sellerTel"));
+                ss.setSellerUser(rs.getString("sellerUser"));
+
+            }
+            return  ss;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            dbClose();
+        }
+        return  null;
     }
 
-    public int updateById(Seller ss) {
-        return 0;
+    public int updateById(Seller se) {
+        String sql="update seller set sellerName=?,sellerUser=?,sellerPassword=?,sellerSex=?,sellerBirthday=?,sellerIdCard=?,sellerEmail=?,sellerTel=?,sellerAddress=? where id=?";
+        Object[]par={se.getId(),se.getSellerName(),se.getSellerUser(),se.getSellerPassword(),se.getSellerSex(),se.getSellerBirthday(),se.getSellerIdCard(),se.getSellerEmail(),se.getSellerTel(),se.getSellerAddress(),se.getId()};
+        return getUpdate(sql,par);
     }
 
     public int addGoods(Goods gg) {
@@ -134,10 +161,51 @@ public class SellerDaoImpl extends BaseDao implements SellerDao{
     }
 
     public List<Goods> queryGoods(String id) {
+        String sql = "select * from goods where goodsSellId =(select id from seller where id=?)";
+        Object[] parameter = {id};
+        List<Goods> stuList = supDao.query(sql, parameter);
+        if (stuList != null && stuList.size() > 0) {
+            return stuList;
+        }
         return null;
     }
 
-    public Goods ggQueryLike(String id, String name) {
+    public Goods ggQueryLike(String goodsid,String sellerid,String name) {
+        if (goodsid!=null && name!=null ) {
+            int idsize = goodsid.length();
+            int nameSize = name.length();
+            if (idsize == 0 && nameSize == 0 ) {
+                //查询商家个人所有
+                String sql = "select * from goods where goodsSellId =(select id from seller where id=sellerid);";
+                Object[] parameter = {sellerid};
+                List<Goods> stuList = supDao.query(sql, parameter);
+                if (stuList != null && stuList.size() > 0) {
+                    Goods gs= (Goods) stuList;
+                    return gs;
+                }
+            } else if (idsize>0 && nameSize == 0 ) {
+                //根据ID具体查询商品
+                String sql = "select * from goods where goodsSellId=sellerid and id=? ";
+                Object[] parameter = {goodsid};
+                List<Goods> stuList = supDao.query(sql, parameter);
+                if (stuList != null && stuList.size() > 0) {
+                    Goods gs= (Goods) stuList;
+                    return gs;
+                }
+            }else if (idsize ==0 && nameSize > 0 ){
+                //根据商品名称模糊查询商品
+                String sql = "select * from goods where goodsSellId=sellerid and goodsName like ?";
+                Object[] parameter = {"%" + name + "%"};
+                List<Goods> stuList = supDao.query(sql, parameter);
+                if (stuList != null && stuList.size() > 0) {
+                    Goods gs= (Goods) stuList;
+                    return gs;
+                }
+            }
+
+        }
+
+
         return null;
     }
 

@@ -5,7 +5,7 @@ import java.sql.*;
 public class BaseDao {
     private static final String URL = "jdbc:mysql://localhost:3306/guimeidb?useUnicode=true&characterEncoding=utf-8";
     private static final  String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "xga";
     private static Connection conn = null;
     private static PreparedStatement psmt = null;
     private static Statement stmt = null;

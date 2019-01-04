@@ -1,8 +1,10 @@
 package Servlet;
 
+import pojo.Goods;
 import pojo.Seller;
 import pojo.page;
 import service.impl.BigclassServiceDaoImpl;
+import service.impl.GoodsServiceDaoImpl;
 import service.impl.SellerServiceDaoIMpl;
 
 import javax.servlet.ServletException;
@@ -17,10 +19,11 @@ import java.sql.Date;
 
 @WebServlet(name = "SellerServlet",urlPatterns = "/doSell")
 public class SellerServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 doGet(request,response);
     }
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //统一字符集
         request.setCharacterEncoding("utf-8");
@@ -34,6 +37,7 @@ public class SellerServlet extends HttpServlet {
         HttpSession session = request.getSession();
         //获取Service的对象
         SellerServiceDaoIMpl seldao=SellerServiceDaoIMpl.getInstance();
+        GoodsServiceDaoImpl goodao=new GoodsServiceDaoImpl();
 
         String action=request.getParameter("action");
         if (action!=null && action.equals("querySell")){
@@ -97,7 +101,7 @@ public class SellerServlet extends HttpServlet {
 
         }
         /**
-         * 修改
+         * 修改商家信息
          */
         if (action!=null && action.equals("upSeller")){
             String id=request.getParameter("id");
@@ -129,6 +133,50 @@ public class SellerServlet extends HttpServlet {
             }else{
                 out.println("<script>alert('商家名称不能相同')</script>");
                 //response.sendRedirect(path+"doSell?action=querySell&pageNumber=1");
+            }
+            //根据ID查看商家个人信息
+            if (action != null && action.equals("modSeller")) {
+                String stuId = request.getParameter("id");
+                Seller cus = seldao.queryById(stuId);
+                if (cus != null) {
+                    session.setAttribute("Seller", cus);
+                    response.sendRedirect("/page/ShowUpdateSeller.jsp");
+                }
+            }
+            /*
+             * 添加商品
+             * */
+            if (action != null && action.equals("queryAddGoodsClass")) {
+                response.sendRedirect("page/AddGoods.jsp");
+            }
+            if (action != null && action.equals("addGoodsClass")) {
+                Long goodid = Long.parseLong(request.getParameter("gid"));
+                String goodname = request.getParameter("gname");
+                Long smailid= Long.parseLong(request.getParameter("gsid"));
+                Double goodmoney =Double.parseDouble(request.getParameter("gmoney"));
+                Long goodnumber = Long.parseLong(request.getParameter("gnumber"));
+                String goodimg = request.getParameter("gimg");
+                Double goodcarriage= Double.parseDouble(request.getParameter("gcarriage"));
+                Long goodtype= Long.parseLong(request.getParameter("gtype"));
+                Long gooddiscid= Long.parseLong(request.getParameter("gdiscid"));
+                String goodselleridi=request.getParameter("gsid");
+                Goods cus = new Goods(goodid, goodname,smailid,goodmoney,goodnumber,goodimg,goodcarriage,goodtype,gooddiscid,goodselleridi);
+                if (goodao.addGoods(cus)==1) {
+                    System.out.println("添加成功");
+                    response.sendRedirect("/doadmin?action=queryGoodsClass&pageNumber=1");
+                } else {
+                    System.out.println("添加失败");
+                    response.sendRedirect("/doadmin?action=queryGoodsClass&pageNumber=1");
+                }
+            }
+            //根据ID查询商品
+            if (action != null && action.equals("modGoodsClass")) {
+                String stuId = request.getParameter("id");
+                Goods cus = (Goods) seldao.queryGoods(stuId);
+                if (cus != null) {
+                    session.setAttribute("Goods", cus);
+                    response.sendRedirect("/page/ShowUpdateGoodsClass.jsp");
+                }
             }
 
         }
