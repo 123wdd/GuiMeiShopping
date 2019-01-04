@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -32,7 +33,7 @@
     <p>您已经注册成功!</p>
     <p>欢迎来到 拍卖天堂</p>
     <label>登录成功，系统将会在<label><B>3</B></label>s后跳转</label>
-    <p>如过没有跳转请单击<a style="font-family: '黑体'" href="login.html">这里</a></p>
+    <p>如过没有跳转请单击<a style="font-family: '黑体'" href="login.jsp">这里</a></p>
     </center>
 </div>
 </body>

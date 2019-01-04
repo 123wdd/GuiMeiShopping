@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -57,29 +58,29 @@
 
 			/* 我的贵美 链接 */
 	        $("#loginName").click(function(){
-	        	open("userorder.html",target="body_i");
+	        	open("userorder.jsp",target="body_i");
 	        });
 			/* 搜索框按钮 */
 			$("#sea").click(function(){
 	    		$.post("../servlet/goodsManagerServlet?action=getgoodsManagerVagueQurey&pageNum=1&pageSize=5&msg=queryValue&value="+$("#ser").val());
-	    		setTimeout(open("goodsQuery.html",target="body_i"),300);
+	    		setTimeout(open("goodsQuery.jsp",target="body_i"),300);
 	    	});
 	    	//大分类搜索-- 家用电器
 	    	$("#electricAppliance").click(function(){
 	    		$.post("../servlet/goodsManagerServlet?action=getgoodsManagerVagueQurey&pageNum=1&pageSize=5&&msg=queryClassID&b_id=1");
-	    		open("goodsQuery.html",target="body_i");
+	    		open("goodsQuery.jsp",target="body_i");
 	    	});
 	    	$("#phone").click(function(){
 	    		$.post("../servlet/goodsManagerServlet?action=getgoodsManagerVagueQurey&pageNum=1&pageSize=5&&msg=queryClassID&b_id=2");
-	    		open("goodsQuery.html",target="body_i");
+	    		open("goodsQuery.jsp",target="body_i");
 	    	});
 	    	$("#baihuo").click(function(){
 	    		$.post("../servlet/goodsManagerServlet?action=getgoodsManagerVagueQurey&pageNum=1&pageSize=5&&msg=queryClassID&b_id=3");
-	    		open("goodsQuery.html",target="body_i");
+	    		open("goodsQuery.jsp",target="body_i");
 	    	});
 	    	$("#book").click(function(){
 	    		$.post("../servlet/goodsManagerServlet?action=getgoodsManagerVagueQurey&pageNum=1&pageSize=5&&msg=queryClassID&b_id=4");
-	    		open("goodsQuery.html",target="body_i");
+	    		open("goodsQuery.jsp",target="body_i");
 	    	});
 
         });
@@ -93,7 +94,7 @@
     <div id="login">
         <div class="login_a" style="margin-left: 12px;width: 80px">
             <div class="login_b" style="background-position:-3PX 0 "></div>
-            <a href="gouwuche.html" target="body_i" class="a_login">购物车</a>
+            <a href="gouwuche.jsp" target="body_i" class="a_login">购物车</a>
         </div>
         <div class="login_a">
             <div class="login_b" style="background-position:-44PX 0 "></div>
@@ -108,10 +109,10 @@
             <a class="a_login" onClick="SetHome(window.location)" href="javascript:void(0)">设为首页</a>
         </div>
         <div class="login_a" style="width: 100px;margin-left: 5px">
-            <a href="login.html" target="body_i">
+            <a href="login.jsp" target="body_i">
                 <div id="login_d">登录</div>
             </a>
-            <a href="register.html" target="body_i">
+            <a href="register.jsp" target="body_i">
                 <div id="login_z">注册</div>
             </a>
         </div>
@@ -124,7 +125,7 @@
     	<input type="text" id="ser" style="width:160px;height:22px;margin:0"><img src="../images/img/head/search.jpg" id="sea" style="float:right;">
     </div>
     <div id="head_dh">
-        <a href="homepage.html" target="body_i">
+        <a href="homepage.jsp" target="body_i">
             <div class="head_dh_tap">首页</div>
         </a>
             <div class="head_dh_tap" id="electricAppliance">家用电器</div>

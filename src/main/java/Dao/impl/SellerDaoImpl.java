@@ -149,4 +149,11 @@ public class SellerDaoImpl extends BaseDao implements SellerDao{
     public int updateAnnById(String id) {
         return 0;
     }
+
+    public Seller seLogin(String sellerUser, String sellerPassword) {
+        String sql="select * from seller where sellerUser=? and sellerPassword=?";
+        Object []parameter={sellerUser,sellerPassword};
+        ResultSet rs=getQuery(sql,parameter);
+        return null;
+    }
 }

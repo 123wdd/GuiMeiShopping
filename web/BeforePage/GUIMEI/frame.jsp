@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -32,13 +33,13 @@
 <marquee id="mm1" direction="down" style="z-index: -1;"><img src="../images/img/images/list1.jpg"></marquee>
 <marquee id="mm2" direction="up" style="z-index: -1;"><img src="../images/img/images/list2.jpg"></marquee>
 <div id="head">
-    <iframe src="head.html" width="980px" height="131px" name="head_i" frameborder="no" scrolling="no"></iframe>
+    <iframe src="head.jsp" width="980px" height="131px" name="head_i" frameborder="no" scrolling="no"></iframe>
 </div>
 <div id="body" >
-    <iframe src="homepage.html" id="iframepage" name="body_i" frameborder="no" scrolling="no" marginheight="0" marginwidth="0" onLoad="iFrameHeight()"></iframe>
+    <iframe src="homepage.jsp" id="iframepage" name="body_i" frameborder="no" scrolling="no" marginheight="0" marginwidth="0" onLoad="iFrameHeight()"></iframe>
 </div>
 <div id="foot">
-    <iframe src="foot.html" width="980px" height="150px" frameborder="no" scrolling="no"></iframe>
+    <iframe src="foot.jsp" width="980px" height="150px" frameborder="no" scrolling="no"></iframe>
 </div>
 
 </body>

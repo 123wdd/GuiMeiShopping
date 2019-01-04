@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -47,7 +48,7 @@
 		});
 	});
 	function  zc() {
-	    open("/BeforePage/GUIMEI/register.html");
+	    open("/BeforePage/GUIMEI/register.jsp");
 
     }
 		

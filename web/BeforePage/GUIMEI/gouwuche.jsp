@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -219,7 +220,7 @@
 	   				<p >应付金额￥:<b id="count_money"></b></p>
 	   			</td>
 	   			<td style="text-align: right;">
-					<p><a href="homepage.html">返回继续购买商品</a></p>
+					<p><a href="homepage.jsp">返回继续购买商品</a></p>
 	   			</td>
 	   		</tr>
 		</table>
