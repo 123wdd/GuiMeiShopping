@@ -99,11 +99,15 @@ public class CustomerDaoImpl extends BaseDao implements CustomerDao{
     }
 
     public int addShop(Shoppingcar shop) {
-        return 0;
+        String sql="INSERT INTO shoppingcar (scGoodsId,scCusId,scNumber)VALUES(?,?,?)";
+        Object[]par={shop.getScGoodsId(),shop.getScCusId(),shop.getScNumber()};
+        return getUpdate(sql,par);
     }
 
     public int updateShop(Shoppingcar shop) {
-        return 0;
+        String sql="update shoppingcar set scNumber=?";
+        Object[]par={shop.getScNumber()};
+        return getUpdate(sql,par);
     }
 
     public int delShop(String id) {
